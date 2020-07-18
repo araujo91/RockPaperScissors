@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html><head></head><main>
+
+        <script>
+            function computerPlay() {                
+                let randomized = Math.floor(Math.random() * 3);
+                let choice = "";
+                switch (randomized) {
+                    case 0:
+                        choice = "Rock"
+                        break;
+                    case 1:
+                        choice = "Paper"
+                        break;
+                    case 2:
+                        choice = "Scissors"
+                    }
+                console.log(choice)
+                //return Math.floor(Math.random() * 3);
+            }
+
+            function playerSelection () {
+                var player = prompt("Pick your 'weapon'");
+                player = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
+                if (player === "Rock" || player === "Paper" || player === "Scissors"){
+                    return player;
+                } else                    
+                    alert("Please make a valid choice");
+                    playerSelection();
+            }
+
+            function playRound(hum, pc) {
+                if (pc === hum) {
+                    alert("This is a draw. Draw again") } 
+                    switch (hum){
+                        case "Rock":
+                            switch(pc){
+                                case "Paper":
+                                    alert("PC wins");
+                                    return 0;  //Pc wins;
+                                    break; 
+                                case "Scissors":
+                                    alert("Human Wins")
+                                    return 1;
+                            }
+
+                            break;
+
+                        case "Paper": 
+                            switch(pc){
+                                case "Scissors":
+                                    alert("PC wins");
+                                    return 0;
+                                    break;
+                                case "Rock":
+                                    alert("Human Wins")
+                                    return 1; 
+                            }
+                        break;
+
+                        case "Scissors": 
+                            switch(pc){
+                                case "Rock":
+                                    alert("PC wins");
+                                    return 0;//pc wins
+                                    break;
+                                case "Paper":
+                                    alert("Human Wins")
+                                    return 1;   //Human wins;
+                            }
+                        break
+                    }
+                        // alert You Lose Paper Beats Rock!
+                return
+            }
+                }
+                
+
+            function game() {
+                // 5 round game and keeps scores. for loop prehaps
+                console.log("winner")
+            }
+        </script>
+
+</main></html>
