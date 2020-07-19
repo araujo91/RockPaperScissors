@@ -2,6 +2,7 @@
 <html><head></head><main>
 
         <script>
+            // Computer play Functional and returns
             function computerPlay() {                
                 let randomized = Math.floor(Math.random() * 3);
                 let choice = "";
@@ -15,10 +16,10 @@
                     case 2:
                         choice = "Scissors"
                     }
-                console.log(choice)
-                //return Math.floor(Math.random() * 3);
+                return choice;                
             }
 
+            //playerSelection resultou e retornou valor
             function playerSelection () {
                 var player = prompt("Pick your 'weapon'");
                 player = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
@@ -27,33 +28,34 @@
                 } else                    
                     alert("Please make a valid choice");
                     playerSelection();
+                    
             }
 
             function playRound(hum, pc) {
                 if (pc === hum) {
-                    alert("This is a draw. Draw again") } 
+                    console.log("This is a draw. Draw again") 
+                    } 
                     switch (hum){
                         case "Rock":
                             switch(pc){
                                 case "Paper":
-                                    alert("PC wins");
+                                    console.log("You Lose! " + pc + " beats " + hum );
                                     return 0;  //Pc wins;
                                     break; 
                                 case "Scissors":
-                                    alert("Human Wins")
+                                    console.log("You Win! " + hum + " beats " + pc)
                                     return 1;
                             }
-
-                            break;
+                        break;
 
                         case "Paper": 
                             switch(pc){
                                 case "Scissors":
-                                    alert("PC wins");
+                                    console.log("You Lose! " + pc + " beats " + hum );
                                     return 0;
                                     break;
                                 case "Rock":
-                                    alert("Human Wins")
+                                    console.log("You Win! " + hum + " beats " + pc)
                                     return 1; 
                             }
                         break;
@@ -61,25 +63,48 @@
                         case "Scissors": 
                             switch(pc){
                                 case "Rock":
-                                    alert("PC wins");
-                                    return 0;//pc wins
+                                    console.log("You Lose! " + pc + " beats " + hum );
+                                    return 0;
                                     break;
                                 case "Paper":
-                                    alert("Human Wins")
-                                    return 1;   //Human wins;
+                                    console.log("You Win! " + hum + " beats " + pc)
+                                    return 1;   
                             }
                         break
-                    }
-                        // alert You Lose Paper Beats Rock!
-                return
-            }
+                    }                      
+                }
+            
                 
                 
 
             function game() {
-                // 5 round game and keeps scores. for loop prehaps
-                console.log("winner")
+                let pc = 0;
+                let hum = 0;
+                for(var i = 0; i < 5; i++) {
+                    let gameOn = playRound(playerSelection(), computerPlay())
+                    if (gameOn == 1) {
+                        hum++
+                        } 
+                        else if(gameOn == 0){
+                            pc++;
+                            }
+                    console.log("Results pc: " + pc + " human " + hum)
+                    //i++;
+                }
+            
+               if (pc === hum) {
+                    alert("This match is tied. Next winner takes it all")
+                    let final= playRound(playerSelection(), computerPlay())
+                    if (final == 1) {console.log("Human Wins")} 
+                        else if(final == 0){console.log("Computer Wins");}
+                    console.log("Results pc: " + pc + " human " + hum)
+                } else if(pc > hum) {
+                    console.log("Computer Wins")
+                } else console.log("Human Wins")
             }
+                
+                
+            
         </script>
 
 </main></html>
