@@ -4,7 +4,7 @@
             <style>
                 #box {
                     border: 1px solid black;
-                    height: 265px;
+                    height: 284px;
                     width: 637px;
                     background-color: grey;
                     text-align: center;
@@ -29,6 +29,9 @@
                 }
 
                 /*#resultBox{}*/
+                #result {
+                    height: 18.4px;
+                }
                 
                 #scoreBoard{
                     display: inline;
@@ -76,19 +79,19 @@
                     <button class="btn" name="Scissors">Scissors</button>
                 </div>
 
-                <div id="resultBox"><p id="result">ois</p></div>
+                <div id="resultBox"><p id="result"> </p></div>
                 
                 <div id="scoreBoard">
                     <div id="result1">
                         <h4>Human</h4>
-                        <div class="score"><h1 id="resultHuman">0</h1></div>
+                        <div class="score"><h1 id="resultHuman" data-value='0'>0</h1></div>
                     </div>
 
                     <h1 id="vs">VS</h1>
 
                     <div id="result2">
                         <h4>Computer</h4>
-                        <div class="score"><h1 id="resultComputer">0</h1></div>
+                        <div class="score"><h1 id="resultComputer" data-value='0'>0</h1></div>
                     </div>
                 </div>
             </div>
@@ -128,17 +131,17 @@
 
             function playRound(hum, pc) {
                 if (pc === hum) {
-                    console.log("This is a draw. Draw again") 
+                    document.getElementById('result').innerHTML = "This is a draw. Draw again"; 
                     } 
                     switch (hum){
                         case "Rock":
                             switch(pc){
                                 case "Paper":
-                                    console.log("You Lose! " + pc + " beats " + hum );
-                                    return 0;  //Pc wins;
+                                    document.getElementById('result').innerHTML = "You Lose! " + pc + " beats " + hum ;
+                                    return 2;  //Pc wins;
                                     break; 
                                 case "Scissors":
-                                    console.log("You Win! " + hum + " beats " + pc)
+                                    document.getElementById('result').innerHTML = "You Win! " + hum + " beats " + pc;
                                     return 1;
                             }
                         break;
@@ -146,11 +149,11 @@
                         case "Paper": 
                             switch(pc){
                                 case "Scissors":
-                                    console.log("You Lose! " + pc + " beats " + hum );
-                                    return 0;
+                                    document.getElementById('result').innerHTML = "You Lose! " + pc + " beats " + hum ;
+                                    return 2;
                                     break;
                                 case "Rock":
-                                    console.log("You Win! " + hum + " beats " + pc)
+                                    document.getElementById('result').innerHTML = "You Win! " + hum + " beats " + pc;
                                     return 1; 
                             }
                         break;
@@ -158,18 +161,18 @@
                         case "Scissors": 
                             switch(pc){
                                 case "Rock":
-                                    console.log("You Lose! " + pc + " beats " + hum );
-                                    return 0;
+                                    document.getElementById('result').innerHTML = "You Lose! " + pc + " beats " + hum ;
+                                    return 2;
                                     break;
                                 case "Paper":
-                                    console.log("You Win! " + hum + " beats " + pc)
+                                    document.getElementById('result').innerHTML = "You Win! " + hum + " beats " + pc;
                                     return 1;   
                             }
                         break
                     }                      
                 }
             
-            function game() {
+            /*function game() {
                 let pc = 0;
                 let hum = 0;
                 for(var i = 0; i < 5; i++) {
@@ -180,8 +183,7 @@
                         else if(gameOn == 0){
                             pc++;
                             }
-                    console.log("Results pc: " + pc + " human " + hum)
-                    
+                    console.log("Results pc: " + pc + " human " + hum)                
                 }
             
                if (pc === hum) {
@@ -189,26 +191,36 @@
                     let final= playRound(playerSelection(), computerPlay())
                     if (final == 1) {console.log("Human Wins")} 
                         else if(final == 0){console.log("Computer Wins");}
-                    console.log("Results pc: " + pc + " human " + hum)
-                } else if(pc > hum) {
+                        console.log("Results pc: " + pc + " human " + hum)
+                    } else if(pc > hum) {
                     console.log("Computer Wins")
                 } else console.log("Human Wins")
             }
-
-        const btn = document.getElementById('choices');
-        btn.addEventListener('click', function(e) {
-            let play = e.originalTarget.innerHTML;
-            let result = document.getElementById('result').innerHTML;
-            switch(playRound(play, computerPlay())) {
-                case 1:
-                result = "Voce ganheu"
+            */
+            const btn = document.getElementById('choices');
+            btn.addEventListener('click', function(e) {
+                let play = e.originalTarget.innerHTML;
+                
+                switch(playRound(play, computerPlay())) {
+                    case 1:// retorna 1 para vitoria hum
+                        var resultHuman = document.getElementById('resultHuman');
+                        resultHuman.dataset.value++;
+                        resultHuman.innerHTML = resultHuman.dataset.value;
+                        break;
                     
-            } // retorna 1 para vitoria hum
-        })
+                    case 2: // Computador ganha
+                        var resultComputer = document.getElementById('resultComputer');
+                        resultComputer.dataset.value++;
+                        resultComputer.innerHTML = resultComputer.dataset.value;
+                        
+                    
+                } 
+            })
         
                 
                 
             
-        </script>
+            </script>
 
-</main></html>
+        </main>
+    </html>
