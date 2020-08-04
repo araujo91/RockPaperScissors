@@ -95,9 +95,7 @@
                     </div>
                 </div>
             </div>
-
     
-    <button onClicK="game()" >Press to play</button>
 
         <script>
             // Computer play Functional and returns
@@ -218,6 +216,7 @@
                         resultComputer.innerHTML = resultComputer.dataset.value;
                         if(resultComputer.innerHTML == 3) {
                             alert("You Loose");
+                            location.reload();
                         }
                         
                     
